@@ -17,6 +17,7 @@ import (
 	"github.com/iotexproject/iotex-core/action"
 	"github.com/iotexproject/iotex-core/action/protocol"
 	"github.com/iotexproject/iotex-core/db"
+	"github.com/iotexproject/iotex-core/state/tracker"
 )
 
 var (
@@ -37,6 +38,7 @@ type (
 	workingSet struct {
 		height       uint64
 		finalized    bool
+		st           tracker.StateTracker
 		commitFunc   func(uint64) error
 		dbFunc       func() db.KVStore
 		delStateFunc func(string, []byte) error
@@ -232,4 +234,9 @@ func (ws *workingSet) DelState(opts ...protocol.StateOption) (uint64, error) {
 		return ws.height, err
 	}
 	return ws.height, ws.delStateFunc(ns, key)
+}
+
+// Track tracks new state change
+func (ws *workingSet) Track(c tracker.StateChange) {
+	ws.st.Append(c)
 }
