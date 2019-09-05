@@ -3,6 +3,7 @@ module github.com/iotexproject/iotex-core
 go 1.12
 
 require (
+	github.com/AndreasBriese/bbloom v0.0.0-20190306092124-e2d15f34fcf9 // indirect
 	github.com/cenkalti/backoff v2.1.1+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/ethereum/go-ethereum v1.8.27
@@ -38,6 +39,7 @@ require (
 	github.com/stretchr/testify v1.3.0
 	github.com/whyrusleeping/yamux v1.2.0 // indirect
 	go.etcd.io/bbolt v1.3.2
+	go.opencensus.io v0.21.0 // indirect
 	go.uber.org/automaxprocs v1.2.0
 	go.uber.org/config v1.3.1
 	go.uber.org/zap v1.10.0
