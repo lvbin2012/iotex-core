@@ -36,9 +36,7 @@ require (
 	github.com/rs/zerolog v1.14.3
 	github.com/spf13/cobra v0.0.4
 	github.com/stretchr/testify v1.3.0
-	github.com/whyrusleeping/yamux v1.2.0 // indirect
 	go.etcd.io/bbolt v1.3.2
-	go.opencensus.io v0.21.0 // indirect
 	go.uber.org/automaxprocs v1.2.0
 	go.uber.org/config v1.3.1
 	go.uber.org/zap v1.10.0
