@@ -8,6 +8,7 @@ package blockchain
 
 import (
 	"context"
+	"fmt"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -571,6 +572,9 @@ func (bc *blockchain) startExistingBlockchain(ctx context.Context) error {
 	}
 
 	for i := stateHeight + 1; i <= tipHeight; i++ {
+		if i%100 == 0 {
+			fmt.Println("state Height", i)
+		}
 		blk, err := bc.dao.GetBlockByHeight(i)
 		if err != nil {
 			return err
@@ -667,7 +671,7 @@ func (bc *blockchain) commitBlock(ctx context.Context, blk *block.Block) error {
 	if err != nil {
 		return err
 	}
-	blk.HeaderLogger(log.L()).Info("Committed a block.", log.Hex("tipHash", tipHash[:]))
+	blk.HeaderLogger(log.L()).Info("Committed a block.", log.Hex("tipHash", tipHash[:]), zap.Int("number of actions", len(blk.Actions)))
 
 	// emit block to all block subscribers
 	bc.emitToSubscribers(blk)
